@@ -1,0 +1,4 @@
+python-sounddevice
+soundfile
+wavio
+SpeechRecognition
