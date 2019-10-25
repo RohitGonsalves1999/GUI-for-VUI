@@ -1,9 +1,5 @@
 import tkinter as tk
-import requests
 import sounddevice as sd
-from scipy.io.wavfile import write
-import numpy as np
-import soundfile as sf
 import wavio
 import speech_recognition as sr
 from tkinter import * 
@@ -18,7 +14,7 @@ def speech_recognizer():
 
 def recognise_speech(filename = 'output.wav'):
     r = sr.Recognizer()
-    data = sr.AudioFile('output.wav')
+    data = sr.AudioFile(filename)
     with data as source:
         audio = r.record(source)
     return (r.recognize_google(audio))
@@ -28,19 +24,14 @@ def record_audio(duration,sample_rate = 44100):
     fs = sample_rate  # Sample rate
     seconds = duration  # Duration of recording
     
-    print('Baat kar na L****')
+    print('Speak')
     myrecording = sd.rec(int(seconds * fs),fs,1)
     sd.wait()  # Wait until recording is finished
-    print('ruk na bsdk')
-    #print(myrecording.flatten())
-    #print(myrecording)
-
-    '''write('output.wav', fs, myrecording)  # Save as WAV file 
-    data, fs = sf.read('output.wav')
-    print(data)
-    sf.write('output.flac',data,fs)'''
+    print('Stop Speaking')
 
     wavio.write('output.wav',myrecording,fs,sampwidth=2)
+
+    return True
 
 
 root = tk.Tk()
