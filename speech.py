@@ -6,8 +6,10 @@ import numpy as np
 import soundfile as sf
 import wavio
 import speech_recognition as sr
+from tkinter import * 
+from tkinter.ttk import *
 
-HEIGHT = 500
+HEIGHT = 100
 WIDTH = 600
 
 def speech_recognizer():
@@ -51,16 +53,19 @@ background_label = tk.Label(root, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
 frame = tk.Frame(root, bg='#80c1ff')
-frame.place(relx=0.5, rely=0.1, relwidth=0.5, relheight=0.1, anchor='n')
+frame.place(relx=0.5, rely=0.1, relwidth=0.3, relheight=0.3, anchor='n')
 
 #entry = tk.Entry(frame, font=40)
 #entry.place(relwidth=0.65, relheight=1)
+photo = PhotoImage(file = "play.png")
+photoimage = photo.subsample(20, 20) 
 
-button = tk.Button(frame, text="Speak", font=10, command=lambda: speech_recognizer())
+button = tk.Button(frame, text="Speak", font=10,image = photoimage, 
+                    compound = LEFT, command=lambda: speech_recognizer())
 button.place(relx=0.5, relheight=1, relwidth=1,anchor = 'n')
 
 lower_frame = tk.Frame(root, bg='#80c1ff')
-lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
+lower_frame.place(relx=0.5, rely=0.5, relwidth=0.75, relheight=0.2, anchor='n')
 
 label = tk.Label(lower_frame)
 label.place(relwidth=1, relheight=1)
